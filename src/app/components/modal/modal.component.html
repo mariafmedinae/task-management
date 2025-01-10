@@ -1,0 +1,39 @@
+<h2 mat-dialog-title class="modal__title text-center">{{ title }}</h2>
+<mat-dialog-content>
+  <!-- Change task status -->
+  @if (action === 'Cambiar estado') {
+    <p class="text-center">
+      ¿Seguro(a)?. La <strong> {{ category }}: {{ item }}</strong
+        > se cambiará al estado <strong>{{ statuses[index[0] + 1] }}</strong>
+    </p>  
+    <!-- Delete status or task -->
+  } @else if (action === 'Eliminar') {
+    <p class="text-center">
+      ¿Seguro(a)?. Se eliminará
+      <strong> {{ category }}: {{item}}</strong
+      >. Esta acción es irreversible
+    </p>
+    <!-- Create or update tasks or statuses -->
+  } @else {
+    <app-input
+    label="Título"
+    type="text"
+    [validators]="titleValidators"
+    [value]="action === 'Actualizar' ? item : ''"
+    (onChange)="updateInput('title', $event)"
+  ></app-input>
+  }
+</mat-dialog-content>
+
+<!-- Modal buttons actions -->
+<mat-dialog-actions class="modal__buttons">
+  <app-basic-button
+    label="Cancelar"
+    (onClick)="closeModal()"
+  ></app-basic-button>
+  <app-button
+    [label]="getButtonLabel()"
+    [isLoading]="isLoading || ((action !== 'Eliminar' && action !== 'Cambiar estado') ? formGroup.invalid : false)"
+    (onClick)="click()"
+  ></app-button>
+</mat-dialog-actions>

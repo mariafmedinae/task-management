@@ -1,0 +1,53 @@
+<div class="column-container">
+  <!-- List of statuses -->
+  @for (status of statuses; track status; let i = $index) {
+  <div
+    class="column text-center"
+    cdkDropList
+    id="{{ i }}"
+    [cdkDropListData]="tasks[i]"
+    [cdkDropListConnectedTo]="statusIds()"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div class="column__header">
+      <p class="column__title">{{ status }} ({{ tasks[i].length }})</p>
+
+      <!-- Action button for custom statuses -->
+      @if (i > 2) {
+      <app-dropdown
+        [icon]="'more_vert'"
+        [options]="['Actualizar', 'Eliminar']"
+        category="estado"
+        [item]="status"
+        [index]="i"
+        (onClick)="actions($event)"
+      ></app-dropdown>
+      }
+    </div>
+
+    <!-- List of tasks -->
+    @for (task of tasks[i]; track task; let j = $index) {
+    <div cdkDrag class="task-card">
+      <span>{{ task }}</span>
+      <app-dropdown
+        [icon]="'more_vert'"
+        [options]="['Actualizar', 'Eliminar']"
+        category="tarea"
+        [item]="task"
+        [index]="[i, j]"
+        (onClick)="actions($event)"
+      ></app-dropdown>
+    </div>
+    }
+  </div>
+  }
+
+  <!-- New status button -->
+  <div class="new-status-btn">
+    <app-button
+      label="+ Nuevo estado"
+      [isLoading]="false"
+      (click)="addStatus()"
+    ></app-button>
+  </div>
+</div>

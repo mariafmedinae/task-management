@@ -1,0 +1,46 @@
+<div class="table-container mat-elevation-z8">
+  <mat-table class="text-nowrap" [dataSource]="data" matSort>
+    @for (column of displayedColumns; track $index) {
+    <ng-container [matColumnDef]="column">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ displayedColumnsNames[column] }}
+      </mat-header-cell>
+      @if(column === 'Eliminar') {
+      <!-- Delete row -->
+      <mat-cell *matCellDef="let element">
+        <app-basic-button
+          icon="delete"
+          (click)="buttonClick('Eliminar', element); $event.stopPropagation()"
+        >
+        </app-basic-button>
+      </mat-cell>
+      } @else if(column === 'Actualizar') {
+      <!-- Edit row -->
+      <mat-cell *matCellDef="let element">
+        <app-basic-button
+          icon="edit"
+          (click)="buttonClick('Actualizar', element); $event.stopPropagation()"
+        >
+        </app-basic-button>
+      </mat-cell>
+      } @else if(column === 'Cambiar_estado') {
+      <!-- Edit row status -->
+      <mat-cell *matCellDef="let element">
+        @if(!element.lastStatus) {
+          <app-basic-button
+          icon="change_circle"
+          (click)="buttonClick('Cambiar estado', element); $event.stopPropagation()"
+          >
+          </app-basic-button>
+        }        
+      </mat-cell>
+      } @else {
+      <!-- Generics columns -->
+      <mat-cell *matCellDef="let element">{{ element[column] }}</mat-cell>
+      }
+    </ng-container>
+    }
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div>

@@ -1,0 +1,16 @@
+<button
+  mat-icon-button
+  [matMenuTriggerFor]="menu"
+>
+  @if (icon) { <mat-icon>{{ icon }}</mat-icon
+  >}
+</button>
+
+<!-- Options list -->
+<mat-menu #menu="matMenu">
+  @for (option of options; track $index) {
+  <button mat-menu-item (click)="click(option)">
+    <span>{{ option }}</span>
+  </button>
+  }
+</mat-menu>

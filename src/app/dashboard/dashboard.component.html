@@ -1,0 +1,40 @@
+<!-- Navbar section -->
+<nav class="navbar">
+  <img
+    class="navbar__logo"
+    src="/assets/magnum_logo.png"
+    alt="Magnum logistics"
+  />
+
+  @if (!isLoading && currentView !== 'tableView') {
+  <app-button
+    label="+ Nueva tarea"
+    [isLoading]="false"
+    (onClick)="addTask()"
+  ></app-button>
+  }
+</nav>
+
+<!-- Main section -->
+<main class="main-container">
+  <!-- Main header section -->
+  @if (isLoading) {
+  <app-loader></app-loader>
+  } @else {
+  <div class="main-container__header">
+    <h1 class="mb-2 mb-md-0">Lista de tareas</h1>
+    <app-toggle-button
+      [options]="viewsList"
+      [currentSelection]="currentView"
+      (onClick)="changeView($event)"
+    ></app-toggle-button>
+  </div>
+
+  <!-- Tasks views -->
+    @if (currentView === "cardsView") {
+    <app-cards-view [statuses]="statusesList" [tasks]="tasksList"></app-cards-view>
+    } @else {
+    <app-table-view [statuses]="statusesList" [tasks]="tasksList"></app-table-view>
+    } 
+  }
+</main>

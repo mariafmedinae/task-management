@@ -1,0 +1,12 @@
+.modal {  
+    &__title {
+        text-transform: uppercase;
+    }
+
+    &__buttons {
+        margin: 0 0 16px 0;
+        padding: 0 24px;
+        display: flex;
+        justify-content: space-between;
+    }
+}

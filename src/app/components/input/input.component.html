@@ -1,0 +1,13 @@
+<mat-form-field class="input" appearance="outline">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    [formControl]="control"
+    matInput
+    (keyup)="change($event)"
+  />
+
+  <!-- Error message -->
+  @if (control.invalid) {
+  <mat-error>{{ errorMessage }}</mat-error>
+  }
+</mat-form-field>

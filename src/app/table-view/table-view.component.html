@@ -1,0 +1,10 @@
+@if (tasksData.length > 0) {
+<app-datatable
+  [names]="tableNames"
+  [data]="tasksData"
+  (action)="tableActions($event)"
+  [updateTable]="updateTable"
+></app-datatable>
+} @else {
+<p class="text-center">No hay tareas para mostrar</p>
+}

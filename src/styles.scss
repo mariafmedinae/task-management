@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+
+// Scrollbar styles
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff00;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #beaffe;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #aa97ff;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Open Sans", sans-serif;
+  background-color: #eff4ff;
+}
+
+.rounded-border {
+  border-radius: 50px !important;
+}
+
+.text-center {
+  text-align: center;
+}

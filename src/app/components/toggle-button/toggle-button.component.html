@@ -1,0 +1,11 @@
+<mat-button-toggle-group
+  class="rounded-border"
+  [hideSingleSelectionIndicator]="true"
+  [(ngModel)]="currentSelection"
+  (click)="click()"
+>
+<!-- Toggle options -->
+@for (item of options; track $index) {
+    <mat-button-toggle [value]="item.value">{{ item.text }}</mat-button-toggle>
+}
+</mat-button-toggle-group>
